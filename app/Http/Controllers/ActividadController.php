@@ -11,6 +11,7 @@ class ActividadController extends Controller
 {
     public function index()
     {
+        // withCount no filtra, trae TODAS las actividades con sus líneas
         $actividades = Actividad::with('lineas.componente.area')->get();
         return view('crud.actividades.index', compact('actividades'));
     }
@@ -62,4 +63,5 @@ class ActividadController extends Controller
         $actividad->delete();
         return redirect('/actividades')->with('success', 'Actividad eliminada');
     }
+
 }
