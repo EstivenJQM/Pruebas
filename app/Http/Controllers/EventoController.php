@@ -27,7 +27,11 @@ class EventoController extends Controller
     }
 
     public function getActividades($id)
-    {
-        return Actividad::where('id_linea', $id)->get();
-    }
+{
+    return \DB::table('actividad')
+        ->join('linea_actividad', 'actividad.id_actividad', '=', 'linea_actividad.id_actividad')
+        ->where('linea_actividad.id_linea', $id)
+        ->select('actividad.*')
+        ->get();
+}
 }
